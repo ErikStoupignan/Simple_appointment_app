@@ -3,16 +3,19 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments or /appointments.json
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.where(user: params[:user_id])
+    # @appointments = @user.Appointment.all
   end
 
   # GET /appointments/1 or /appointments/1.json
   def show
+    # @appointment = Appointment.all
   end
 
   # GET /appointments/new
   def new
-    @appointment = Appointment.new
+    @appointment = Appointment.new(user_id: params[:user_id])
+    # @appointment = Appointment.new
   end
 
   # GET /appointments/1/edit
@@ -22,10 +25,13 @@ class AppointmentsController < ApplicationController
   # POST /appointments or /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
+    # @appointment = Appointment.new(date: params[:date], time: params[:time], user_id: params[:user_id])
+    @appointment.user = User.find(params[:user_id])
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully created." }
+        # format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully created." }
+        format.html { redirect_to user_appointment_url(@appointment.user, @appointment), notice: "Appointment was successfully created." }
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +44,7 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully updated." }
+        format.html { redirect_to user_appointment_url(@appointment.user, @appointment), notice: "Appointment was successfully updated." }
         format.json { render :show, status: :ok, location: @appointment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +58,8 @@ class AppointmentsController < ApplicationController
     @appointment.destroy
 
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: "Appointment was successfully destroyed." }
+      # format.html { redirect_to appointments_url, notice: "Appointment was successfully destroyed." }
+      format.html { redirect_to user_appointments_url, notice: "Appointment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -61,10 +68,13 @@ class AppointmentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_appointment
       @appointment = Appointment.find(params[:id])
+      # @user = User.find(params[:user_id])
     end
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:start_date, :end_date)
+      # p :appointment
+      # params.require(:appointment).permit(:date, :time)
+      params.require(:appointment).permit(:datetime)
     end
 end

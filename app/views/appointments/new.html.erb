@@ -1,9 +1,13 @@
 <h1>New appointment</h1>
 
-<%= render "form", appointment: @appointment %>
+<%= form_with(model: @appointment, url: user_appointments_url, method: :post ) do |form| %>
+  <%= render "form", appointment: @appointment, form: form %>
+<% end %>
 
 <br>
 
 <div>
-  <%= link_to "Back to appointments", appointments_path %>
+  <%# <%= link_to "Back to appointments", appointments_path %>
+  <%# <%= link_to "Back to appointments", user_appointment_path %>
+
 </div>

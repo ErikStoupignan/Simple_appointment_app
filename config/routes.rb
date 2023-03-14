@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :appointments
-  resources :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'users#index'
 
-  # Defines the root path route ("/")
-  root 'appointments#index'
+  # resources :appointments, only: %i[new create]
+
+  resources :users do
+    resources :appointments
+    # post 'create', to: 'appointments#create'
+  end
 end

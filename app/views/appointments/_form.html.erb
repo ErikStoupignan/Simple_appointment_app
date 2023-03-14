@@ -1,4 +1,6 @@
-<%= form_with(model: appointment) do |form| %>
+
+
+
   <% if appointment.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
@@ -12,16 +14,11 @@
   <% end %>
 
   <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.text_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.text_field :end_date %>
+    <%= form.label :datetime, style: "display: block" %>
+    <%= form.datetime_select :datetime, start_year: Date.today.year, :ampm => true, :minute_step => 15, default: DateTime.now %>
   </div>
 
   <div>
     <%= form.submit %>
   </div>
-<% end %>
+
