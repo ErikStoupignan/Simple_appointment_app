@@ -1,10 +1,16 @@
-<h1>Editing user</h1>
+<section class="container my-auto relative erik_border">
+  <h1 class="erik_border">Editing user</h1>
 
-<%= render "form", user: @user %>
+  <div class="erik_border flex justify-center items-center h-50">
+    <%= render "form", user: @user, class:"" %>
+  </div>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
-</div>
+  <div class="erik_border">
+    <%= link_to "Show this user", @user %> |
+    <%# <%= link_to "Back to users", users_path %>
+  </div>
+
+  <%= link_to "<-", users_path, class:"bg-sky-700 text-white duration-50 absolute rounded-full top-0 right-0 w-8 h-8 flex justify-center items-center hover:bg-sky-500" %>
+</section>

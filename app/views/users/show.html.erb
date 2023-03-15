@@ -1,13 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<div class="container relative">
 
-<%= render @user %>
+  <p style="color: green" class="flex justify-start">
+    <%= notice %>
+  </p>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+  <p class="">
+    <%= render @user %>
+  </p>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
-  <%= link_to "Create appointment", new_user_appointment_path(@user) %>
-  <%= link_to "Show all my appointments", user_appointments_path(@user) %>
+  <div class="flex flex-col text-center gap-1">
+    <%= link_to "Edit this user", edit_user_path(@user), class:"hover:bg-sky-700 hover:text-white duration-150" %>
+    <%= button_to "Destroy this user", @user, method: :delete, class:"hover:bg-red-500 w-full hover:text-white duration-150" %>
+    <%= link_to "Create appointment", new_user_appointment_path(@user), class:"hover:bg-sky-700 hover:text-white duration-150" %>
+    <%= link_to "Show all my appointments", user_appointments_path(@user), class:"hover:bg-sky-700 hover:text-white duration-150" %>
+  </div>
+
+  <%= link_to "<-", users_path, class:"bg-sky-700 text-white duration-50 absolute rounded-full top-0 right-0 w-8 h-8 flex justify-center items-center hover:bg-sky-500" %>
+
 </div>
 
