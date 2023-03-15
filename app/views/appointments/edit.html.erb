@@ -1,0 +1,14 @@
+<h1>Editing appointment</h1>
+
+<%= form_with(model: @appointment, url: user_appointment_url, method: :patch ) do |form| %>
+  
+  <%= render "form", appointment: @appointment, form: form %>
+
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this appointment", user_appointment_url(@appointment.user, @appointment) %> |
+  <%= link_to "Back to appointments", user_appointments_path(params[:user_id]) %>
+</div>

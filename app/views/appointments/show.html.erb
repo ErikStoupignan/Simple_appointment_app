@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @appointment %>
+
+<div>
+  <%= link_to "Edit this appointment", edit_user_appointment_path(@appointment.user, @appointment) %> |
+  <%= link_to "Back to appointments", user_appointments_path(@appointment.user) %>
+
+  <%# <%= button_to "Destroy this appointment", @appointment, method: :delete %>
+  <%= button_to "Destroy this appointment", user_appointment_path, method: :delete %>
+</div>
