@@ -14,6 +14,9 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  # Comentario para que tailwind funcione +++++++++++++++++++++++++++++++++++++++++
+  config.assets.debug = true
+
   # Enable server timing
   config.server_timing = true
 
